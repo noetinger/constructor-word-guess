@@ -1,0 +1,1 @@
+var Word = require('./Word.js');
