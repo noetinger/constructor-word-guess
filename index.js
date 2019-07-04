@@ -14,14 +14,14 @@ function newGame() {
     //console.log(finalWord)
 };
 
-function gameOver(){
+function gameOver() {
     console.log("Game Over");
     inquirer.prompt([{
         type: "confirm",
         name: "playAgain",
         message: "Play again?",
-    }]).then(function (response){
-        if(response.playAgain){
+    }]).then(function (response) {
+        if (response.playAgain) {
             newGame();
             print();
             promptGuess();
@@ -32,34 +32,32 @@ function gameOver(){
 
 }
 
-//Display Word
-
-function promptGuess(){
+function promptGuess() {
     inquirer.prompt([{
         name: "ask",
         message: "Guess a letter."
-    }]).then(function (response){
+    }]).then(function (response) {
         var input = response.ask
-        if (lives > 0){
-            if (input.length === 1){
+        if (lives > 0) {
+            if (input.length === 1) {
                 finalWord.checkGuess(input);
                 displayWord = finalWord.createWordString()
 
-                if(finalWord.compare === displayWord){
+                if (finalWord.compare === displayWord) {
                     console.log("Sorry, there is no " + input)
                     lives--
                     console.log("You have " + lives + " left.")
-                        if (lives === 0){
-                            gameOver()
-                        } else {
-                            print()
-                            promptGuess()
-                        }
+                    if (lives === 0) {
+                        gameOver()
+                    } else {
+                        print()
+                        promptGuess()
+                    }
                 } else {
                     console.log("Good choice!")
                     lettersLeft--
                     print()
-                    if (lettersLeft === 0){
+                    if (lettersLeft === 0) {
                         console.log("Excellent Job! Here is another word - ")
                         newGame();
                         print();
@@ -68,7 +66,7 @@ function promptGuess(){
                         promptGuess();
                     }
                 }
-            } else if (input.length === 0){
+            } else if (input.length === 0) {
                 console.log("Please choose a letter.");
                 promptGuess()
             } else {
@@ -81,7 +79,7 @@ function promptGuess(){
     })
 };
 
-function display(){
+function display() {
     displayWord = finalWord.createWordString();
     console.log(displayWord);
     finalWord.compare = displayWord;
