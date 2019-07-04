@@ -80,6 +80,7 @@ function promptGuess() {
 };
 
 function display() {
+    //console.log(finalWord);
     displayWord = finalWord.createWordString();
     console.log(displayWord);
     finalWord.compare = displayWord;

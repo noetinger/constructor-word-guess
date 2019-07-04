@@ -6,7 +6,7 @@ function Letter(character) {
             this.guessed = true;
         }
     };
-    this.display = function () {
+    this.returnChar = function () {
         if (this.guessed === true) {
             return this.character;
         } else {

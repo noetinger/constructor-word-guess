@@ -9,8 +9,9 @@ function Word(word){
     this.createWordString = function(){
         var finalString = "";
         for (var j = 0; j < this.letterArr.length; j++){
-            finalString += this.letterArr[j].display()+ " ";
+            finalString += this.letterArr[j].returnChar()+ " ";
         }
+        return finalString;
     }
     this.checkGuess = function (input){
         for (var k = 0; k < this.letterArr.length; k++){
