@@ -1,23 +1,40 @@
-var Letter = require('./Letter.js');
+const Letter = require('./Letter.js');
 
-function Word(word){
-    this.letterArr = [];
-    this.compare = "";
-    for (var i = 0; i < word.length; i++){
-        this.letterArr.push(new Letter(word[i]));
-    };
-    this.createWordString = function(){
-        var finalString = "";
-        for (var j = 0; j < this.letterArr.length; j++){
-            finalString += this.letterArr[j].returnChar()+ " ";
+function Word() {
+    this.lettersArr = [];
+
+
+
+    this.getPuzzle = function () {
+        const puzzle = [];
+        for (let i = 0; i < this.lettersArr.length; i++) {
+            const currentLetter = this.lettersArr[i];
+            const character = currentLetter.getCharacter();
+            puzzle.push(character);
         }
-        return finalString;
+        return puzzle.join(" ")
     }
-    this.checkGuess = function (input){
-        for (var k = 0; k < this.letterArr.length; k++){
-            this.letterArr[k].checkGuess(input);
+
+
+    
+    this.guessLetter = function (character) {
+        for (let i = 0; i < this.lettersArr.length; i++) {
+            const currentLetter = this.lettersArr[i];
+            currentLetter.checkGuess(character);
         };
     };
+    this.populateLetters = function (word) {
+        //console.log(word);
+        const letters = word.split('');
+        for (let i = 0; i < letters.length; i++) {
+            const currentLetter = new Letter(letters[i]);
+            this.lettersArr.push(currentLetter);
+        }
+    }
 }
 
 module.exports = Word;
+
+//const dog = new Word()
+//const puzzle = dog.getPuzzle()
+//console.log(puzzle)

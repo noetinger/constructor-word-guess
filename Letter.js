@@ -1,18 +1,20 @@
 function Letter(character) {
     this.character = character;
-    this.guessed = false;
-    this.checkGuess = function (input) {
-        if (input === this.character) {
-            this.guessed = true;
-        }
+    this.isGuessed = false;
+    this.getCharacter = function () {
+        return this.isGuessed ? this.character : '_';
     };
-    this.returnChar = function () {
-        if (this.guessed === true) {
-            return this.character;
-        } else {
-            return "_";
-        };
+    this.checkGuess = function (guess) {
+        if (guess.toLowerCase() === this.character.toLowerCase()) {
+            this.isGuessed = true;
+        }
+        return this.isGuessed;
     };
 };
+
+//tests:
+//const letterA = new Letter('a');
+//console.log(letterA);
+//console.log('isGuessed defaults to false PASS:', letterA.isGuessed === false);
 
 module.exports = Letter;
