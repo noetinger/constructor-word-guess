@@ -1,34 +1,41 @@
-const Word = require('./Word.js');
-var rl = readline.createInterface({
+const Word = require('./word.js');
+const readline = require('readline');
+const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-const wordBank = ['apple', 'banana', 'orange', 'peach'];
+
+const wordBank = ['dog', 'cat', 'fish'];
+const selectedWord = new Word();
+let wins = 0;
+let displayWord;
 
 function startGame() {
-    const randomIndex = Math.floor(Math.random * wordBank.length);
-    const selectedWord = new Word();
+    const randomIndex = Math.floor(Math.random() * wordBank.length);
     selectedWord.populateLetters(wordBank[randomIndex]);
     showPuzzle(selectedWord);
-    askLetter(selectedWord);
-};
+    askLetter();
+}
 
 function askLetter() {
     rl.question('Guess a letter...', function (guess) {
         selectedWord.guessLetter(guess);
         showPuzzle(selectedWord);
-        if (selectedWord.indexOf("_") > -1) {
+        if (displayWord.indexOf("_") > -1) {
             askLetter(selectedWord);
         } else {
             console.log("You Won!")
             console.log("Game will start again momentarily")
+            wins++
+            console.log(wins);
             setTimeout(startGame, 3000);
         };
-    });
-};
+    })
+}
 
 function showPuzzle(word) {
-    console.log(word.getPuzzle());
-};
+    displayWord = word.getPuzzle()
+    console.log(displayWord);
+}
 
 startGame();
