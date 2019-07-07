@@ -3,7 +3,7 @@ This is a Hangman-style game that is played entirely in the command line using p
 
 Screenshots are located here: https://github.com/noetinger/constructor-word-guess/tree/master/screenshots
 
-#Syntax Used
+# Syntax Used
 * JavaScript
 * Node.js
 * Readline
